@@ -117,7 +117,7 @@ const AppNavigator = StackNavigator(
   {
     ...ExampleRoutes,
     Index: {
-      screen: MainScreen,
+      screen: StacksInTabs,
     },
   },
   {

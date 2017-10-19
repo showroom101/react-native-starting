@@ -41,8 +41,8 @@ const MyNavScreen = ({ navigation, banner }) => (
       title="Open notifications screen"
     />
     <Button
-      onPress={() => navigation.navigate('SettingsTab')}
-      title="Go to settings tab"
+      onPress={() => navigation.navigate('GroupsChatTab')}
+      title="Go to groups chat tab"
     />
     <Button onPress={() => navigation.goBack(null)} title="Go back" />
   </ScrollView>
@@ -65,6 +65,13 @@ const MyNotificationsSettingsScreen = ({ navigation }) => (
 
 const MySettingsScreen = ({ navigation }) => (
   <MyNavScreen banner="Settings Screen" navigation={navigation} />
+);
+
+const MyChatScreen = ({ navigation }) => (
+  <MyNavScreen banner="Hello !! Jaaui" navigation={navigation} />
+);
+const MyChatGroupScreen = ({ navigation }) => (
+  <MyNavScreen banner="Starting chat screen" navigation={navigation} />
 );
 
 const MainTab = StackNavigator({
@@ -100,6 +107,28 @@ const SettingsTab = StackNavigator({
   },
 });
 
+const ChatTab = StackNavigator({
+  ChatTab: {
+    screen: MyChatScreen,
+    path: '/',
+    navigationOptions: () => ({
+      title: 'Jaaui',
+    }),
+  },
+  GroupsChatTab: {
+    screen: MyChatGroupScreen,
+    navigationOptions: {
+      title: 'Chat',
+    },
+  },
+  ImagesTab: {
+    screen: MyProfileScreen,
+    navigationOptions: {
+      title: 'Toon',
+    },
+  },
+});
+
 const StacksInTabs = TabNavigator(
   {
     MainTab: {
@@ -110,6 +139,20 @@ const StacksInTabs = TabNavigator(
         tabBarIcon: ({ tintColor, focused }) => (
           <Ionicons
             name={focused ? 'ios-home' : 'ios-home-outline'}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        ),
+      },
+    },
+    ChatTab: {
+      screen: ChatTab,
+      path: '/chat',
+      navigationOptions: {
+        tabBarLabel: 'Chat',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? 'ios-chatbubbles' : 'ios-chatbubbles-outline'}
             size={26}
             style={{ color: tintColor }}
           />
